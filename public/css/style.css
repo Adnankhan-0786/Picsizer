@@ -1,4 +1,4 @@
-  :root{
+:root{
     --paper:#F5F6F3;
     --paper-line:#DBDDD6;
     --ink:#1B2430;
@@ -486,3 +486,67 @@ main{position:relative;}
   .dropzone{min-height:190px;}
 }
 
+/* =========================================================
+   MOBILE RESPONSIVE FIXES (added)
+   Fixes: horizontal page scroll, iOS auto-zoom on inputs,
+   header overflow on narrow phones, cramped compare/result
+   layout on small screens.
+   ========================================================= */
+html{ overflow-x:hidden; width:100%; }
+body{ overflow-x:hidden; width:100%; }
+*,*::before,*::after{ max-width:100%; }
+img,canvas{ height:auto; }
+
+/* Prevent iOS Safari from auto-zooming when a field is focused
+   (iOS zooms any input/select with font-size below 16px) */
+.field select,
+.field input[type=number],
+.field input[type=text]{ font-size:16px; }
+
+/* Header: wrap instead of overflowing on narrow phones */
+header.topbar{
+  flex-wrap:wrap;
+  row-gap:10px;
+}
+.brand{ flex-wrap:wrap; row-gap:6px; }
+
+@media (max-width:480px){
+  header.topbar{ padding:12px; }
+  .brand .mark{ width:32px; height:32px; font-size:11px; }
+  .brand .name{ font-size:16px; }
+  .brand .tag{ display:none; }
+  .mode-toggle{ font-size:11px; }
+  .mode-toggle button{ padding:6px 10px; }
+
+  .app{ grid-template-columns:1fr; }
+  main{ padding:16px 12px 50px; max-width:100%; }
+
+  section.intro h1{ font-size:22px; }
+  section.intro p{ font-size:13.5px; }
+
+  .dropzone{ padding:28px 12px; min-height:160px; }
+  .dropzone .big{ font-size:14.5px; }
+  .dropzone .small{ font-size:11.5px; }
+
+  .control-group{ padding:14px 12px; }
+  .row{ gap:10px; }
+  .field{ min-width:0; flex:1 1 120px; }
+  .target-input{ width:100%; }
+  .target-input input{ width:0; flex:1; }
+
+  /* stack the before/after comparison instead of squeezing it */
+  .result-top{ flex-direction:column; }
+  .compare{ min-width:0; width:100%; }
+  .arrow{ transform:rotate(90deg); align-self:center; }
+  .reduction-badge{ width:100%; }
+
+  .process-bar{ flex-direction:column; align-items:stretch; }
+  .process-bar .btn{ width:100%; }
+  .filelist-actions{ flex-direction:column; }
+  .filelist-actions .btn{ width:100%; }
+
+  .results-head{ flex-direction:column; align-items:stretch; }
+  .results-head .btn{ width:100%; }
+
+  .paywall-card{ max-width:90vw; padding:20px; }
+}
