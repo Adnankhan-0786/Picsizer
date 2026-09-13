@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PicSizer — Resize, compress &amp; convert PDFs and images</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="simple">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="mark">PS</div>
+    <div>
+      <div class="name">PicSizer</div>
+    </div>
+    <span class="tag">// resize · compress · convert</span>
+  </div>
+  <div class="mode-toggle">
+    <button id="mode-simple" class="active">SIMPLE</button>
+    <button id="mode-advanced">ADVANCED</button>
+  </div>
+</header>
+
+<div class="app">
+  <nav class="ops" id="ops-nav">
+    <div class="op-item active" data-op="convert"><span class="num">01</span>Image Converter</div>
+    <div class="op-item" data-op="resize"><span class="num">02</span>Image Resizer</div>
+    <div class="op-item" data-op="compress"><span class="num">03</span>Image Compressor</div>
+    <div class="op-item" data-op="img2pdf"><span class="num">04</span>Image → PDF</div>
+    <div class="op-item" data-op="pdf2img"><span class="num">05</span>PDF → Image</div>
+    <div class="op-item" data-op="pdfcompress"><span class="num">06</span>PDF Compressor</div>
+  </nav>
+
+  <main>
+    <section class="intro">
+      <h1 id="op-title">Image Converter</h1>
+      <p id="op-desc">Convert JPG, PNG and WebP files into each other, or bundle them into a PDF.</p>
+      <div class="privacy-note">🔒 Your files are processed locally in your browser whenever possible.</div>
+    </section>
+
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="file-input" multiple>
+      <div class="icon">⇪</div>
+      <div class="big" id="dz-label">Drop your files here</div>
+      <div class="small" id="dz-sub">or click to choose files — JPG, PNG, WebP, BMP</div>
+    </div>
+
+    <div class="filelist" id="filelist"></div>
+    <div class="filelist-actions" id="filelist-actions" style="display:none;">
+      <button class="btn secondary small" id="clear-all">Clear all</button>
+    </div>
+
+    <div class="controls" id="controls"></div>
+
+    <div class="process-bar" id="process-bar" style="display:none;">
+      <button class="btn" id="process-btn">Convert</button>
+      <span class="hint" id="process-hint"></span>
+    </div>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-steps" id="progress-steps">
+        <span data-step="read">Reading</span> →
+        <span data-step="process">Processing</span> →
+        <span data-step="optimize">Optimizing</span> →
+        <span data-step="output">Generating output</span> →
+        <span data-step="done">Complete</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="error-banner" id="error-banner"></div>
+
+    <div class="results" id="results">
+      <div class="results-head">
+        <h2><span class="check">✓</span> <span id="results-title">Conversion complete</span></h2>
+        <button class="btn secondary small" id="download-zip" style="display:none;">Download all as ZIP</button>
+      </div>
+      <div class="results-body" id="results-body">
+        <div id="results-list"></div>
+        <div class="paywall-overlay" id="paywall-overlay">
+          <div class="paywall-card">
+            <div class="paywall-title">Pay ₹5 to unlock your download</div>
+            <div class="paywall-sub">Secure checkout via Razorpay. Pay ₹5 once to unlock your generated files.</div>
+            <button class="btn" id="paywall-unlock">Pay ₹5 &amp; Unlock download</button><div id="payment-status" class="hint" style="margin-top:8px;"></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn secondary" id="process-another">Process another file</button>
+    </div>
+  </main>
+</div>
+
+<footer>PicSizer — files never leave your device unless a step requires it. Built for quick, precise control over file size.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="js/core.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/converter.js"></script>
+<script src="js/payment.js"></script>
+<script src="js/results.js"></script>
+</body>
+</html>
